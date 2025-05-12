@@ -13,7 +13,8 @@
         "livewire/livewire": "^3.4",
         "livewire/volt": "^1.0",
         "openai-php/client": "^0.10.3",
-        "probots-io/pinecone-php": "^1.0"
+        "probots-io/pinecone-php": "^1.0",
+        "spatie/laravel-export": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

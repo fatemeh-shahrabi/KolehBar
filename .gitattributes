@@ -1,11 +1,30 @@
-* text=auto eol=lf
+# Ensure sensitive JSON files in the credentials directory are ignored
+/storage/credentials/*.json
 
+# Optional: Add these if you want to ignore other common Laravel and general files
+/vendor
+/node_modules
+.env
+.phpunit.result.cache
+/storage/*.key
+/storage/app/public
+/storage/debugbar
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/logs
+
+# GitHub-related files
+/.github export-ignore
+CHANGELOG.md export-ignore
+.styleci.yml export-ignore
+
+# File types with specific diffs
 *.blade.php diff=html
 *.css diff=css
 *.html diff=html
 *.md diff=markdown
 *.php diff=php
 
-/.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+# Auto conversion for line endings
+* text=auto eol=lf
