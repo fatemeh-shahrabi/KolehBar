@@ -86,9 +86,11 @@ Route::get('/source', Index::class)
 
 // Conversation routes:
 Route::get('/conversation', ConversationIndex::class)
+    ->middleware(['auth'])
     ->name('conversation.index');
 
 Route::get('/conversation/{conversation}', Messages::class)
+    ->middleware(['auth'])
     ->name('conversation.messages');
 
 Route::get('/parking', ParkingIndex::class)
