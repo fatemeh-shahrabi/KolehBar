@@ -82,20 +82,16 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::get('/source', Index::class)
-    ->middleware('auth')
     ->name('source.index');
 
 // Conversation routes:
 Route::get('/conversation', ConversationIndex::class)
-    ->middleware('auth')
     ->name('conversation.index');
 
 Route::get('/conversation/{conversation}', Messages::class)
-    ->middleware('auth')
     ->name('conversation.messages');
 
 Route::get('/parking', ParkingIndex::class)
-    ->middleware('auth')
     ->name('parking.index');
 
 Route::view('profile', 'profile')

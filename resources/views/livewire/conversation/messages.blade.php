@@ -17,7 +17,7 @@
         </div>
 
         <!-- Login + Lock Container -->
-<div class="flex items-center gap-3">
+        <div class="flex items-center gap-3">
 
 
     <a href="{{ route('login') }}" class=" text-black text-base px-5 py-2 rounded-xl shadow bg-[#A7D7A8] hover:bg-[#5C9562] transition">
@@ -55,6 +55,8 @@
             <div class="overflow-x-auto mb-4">
                 <div class="flex gap-3 min-w-max">
                     @foreach ([
+                        'می تونی چند تا از جاذبه های کاشان را معرفی کنی؟',
+                        'مراسم گلاب گیری کاشان را از کجا می توانم تجربه کنم؟',
                         'برام چندتا تست شخصیت‌شناسی بفرست',
                         'خودت ازم سوال بپرس جواب بدم',
                         'از چه نظر میخوای من را بشناسی؟'

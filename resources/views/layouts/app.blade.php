@@ -15,6 +15,9 @@
     <script src="{{ asset('prism/prism.js') }}"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@livewireStyles
+
 </head>
 <style>
     @font-face {
@@ -40,7 +43,7 @@
 </style>
 <body class="font-dana antialiased">
     <div class="min-h-screen bg-gray-100">
-        <livewire:layout.navigation />
+        {{-- <livewire:layout.navigation /> --}}
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -55,6 +58,8 @@
             {{ $slot }}
         </main>
     </div>
+    @livewireScripts
+
 </body>
 
 </html>
