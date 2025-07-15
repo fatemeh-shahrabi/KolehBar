@@ -38,7 +38,18 @@ Full-stack development using Laravel.
 Currently in development and at MVP stage.
 
 ---
+## Screenshots
 
+### Homepage
+![Homepage](./screenshots/homepage.png)
+
+### Kolak AI Travel Assistant
+![Kolak AI](./screenshots/kolakai.png)
+
+### Admin Dashboard – Events Panel
+![Admin Dashboard - Events](./screenshots/admin-dashboard-events.png)
+
+---
 ## Contact
 
 **Fatemeh Shahrabi Farahani**  
