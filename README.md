@@ -12,10 +12,11 @@ Travel planning can often be confusing and scattered. Kolehbar solves this probl
 
 ## Technologies Used
 
-- 🖥️ Laravel + Livewire  
-- 🎨 Tailwind CSS  
-- 🤖 OpenAI API (in development)  
-- 📦 SQLite (for local database)  
+[![Laravel](https://img.shields.io/badge/-Laravel-%23FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Livewire](https://img.shields.io/badge/-Livewire-%2322C55E?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel-livewire.com)
+[![Tailwind CSS](https://img.shields.io/badge/-Tailwind_CSS-%2306B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![OpenAI](https://img.shields.io/badge/-OpenAI-%23000000?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com)
+[![SQLite](https://img.shields.io/badge/-SQLite-%230073a6?style=for-the-badge&logo=sqlite&logoColor=white)](https://sqlite.org)
 
 ---
 
@@ -41,10 +42,10 @@ Currently in development and at MVP stage.
 
 ## Screenshots
 
-All screenshots are in the [`screenshots`](./screenshots) folder:  
-- `kolakai.png`  
-- `homepage.png`  
-- `admin-dashboard-events.png`
+All screenshots are in the [`screenshots`](./screenshots) folder:
+
+| ![kolakai](./screenshots/kolakai.png) | ![homepage](./screenshots/homepage.png) | ![admin-dashboard-events](./screenshots/admin-dashboard-events.png) |
+|---------------------------------------|-----------------------------------------|--------------------------------------------------------------------|
 
 ---
 
