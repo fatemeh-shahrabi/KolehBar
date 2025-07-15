@@ -1,21 +1,21 @@
 # Kolehbar – AI-powered Travel Planner
 
-Kolehbar is an intelligent web app that provides personalized travel plans based on users' personality, conditions, and budget using artificial intelligence.
+Kolehbar is an intelligent web application that provides personalized travel plans based on users' personality, conditions, and budget using artificial intelligence.
 
 ---
 
 ## Project Overview
 
-Travel planning can be confusing and fragmented. Kolehbar solves this by offering tailored local events, destinations, and travel itineraries customized for each user.
+Travel planning can often be confusing and scattered. Kolehbar solves this problem by offering tailored local events, destinations, and travel itineraries customized for each user.
 
 ---
 
 ## Technologies Used
 
-[![Laravel](https://img.shields.io/badge/-Laravel-FF2D20?style=flat&logo=laravel&logoColor=fff)](https://laravel.com/)  
-[![Livewire](https://img.shields.io/badge/-Livewire-22D3EE?style=flat)](https://laravel-livewire.com/)  
-[![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-06B6D4?style=flat&logo=tailwindcss)](https://tailwindcss.com/)   
-[![OpenAI](https://img.shields.io/badge/-OpenAI-412991?style=flat&logo=openai)](https://openai.com/)
+- 🖥️ Laravel + Livewire  
+- 🎨 Tailwind CSS  
+- 🤖 OpenAI API (in development)  
+- 📦 SQLite (for local database)  
 
 ---
 
@@ -29,7 +29,7 @@ Travel planning can be confusing and fragmented. Kolehbar solves this by offerin
 
 ## My Role
 
-Full-stack development using Laravel.
+Full-stack development using Laravel and mobile-first UI design.
 
 ---
 
@@ -38,20 +38,63 @@ Full-stack development using Laravel.
 Currently in development and at MVP stage.
 
 ---
+
 ## Screenshots
 
-### Homepage
-![Homepage](./screenshots/homepage.png)
-
-### Kolak AI Travel Assistant
-![Kolak AI](./screenshots/kolakai.png)
-
-### Admin Dashboard – Events Panel
-![Admin Dashboard - Events](./screenshots/admin-dashboard-events.png)
+All screenshots are in the [`screenshots`](./screenshots) folder:  
+- `kolakai.png`  
+- `homepage.png`  
+- `admin-dashboard-events.png`
 
 ---
-## Contact
 
-**Fatemeh Shahrabi Farahani**  
-[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/fatemeh-shahrabi-farahani)  
-[![Email](https://img.shields.io/badge/-Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:fatemeh.shahrabifarahanii@gmail.com)
+## Getting Started
+
+Follow these steps to run the project locally:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/fatemeh-shahrabi/Kolehbar.git
+cd Kolehbar
+
+# 2. Install PHP dependencies with composer
+composer install
+
+# 3. Install JavaScript dependencies with npm
+npm install
+
+# 4. Copy the environment file
+copy .env.example .env   # Windows
+# or
+cp .env.example .env     # Linux/macOS
+
+# 5. Generate the application key
+php artisan key:generate
+
+# 6. Create an empty SQLite database file
+type nul > database/database.sqlite  # Windows
+# or
+touch database/database.sqlite       # Linux/macOS
+
+# 7. Update your .env file to use SQLite:
+# DB_CONNECTION=sqlite
+# DB_DATABASE=/full/path/to/database/database.sqlite
+
+# 8. Run database migrations
+php artisan migrate
+
+# 9. Compile assets (CSS/JS)
+npm run dev
+
+# 10. Run the Laravel development server
+php artisan serve
+
+# The app will be accessible at: http://127.0.0.1:8000
+```
+## Environment Variables
+
+Make sure to add your API keys in the .env file:
+
+OPENAI_API_KEY="your_openai_api_key_here"
+PINECONE_API_KEY="your_pinecone_api_key_here"
+PINECONE_HOST="your_pinecone_host_here"
