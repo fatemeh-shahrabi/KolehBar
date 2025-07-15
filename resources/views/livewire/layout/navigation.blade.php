@@ -15,8 +15,28 @@ new class extends Component
         $this->redirect('/', navigate: true);
     }
 }; ?>
-
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<header class="bg-[#A7D7A7] px-4 py-3 shadow-md sticky top-0 z-10">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="{{ route('kolak.conversations') }}" class="flex items-center gap-2">
+          <img src="{{ asset('images/kolak-avatar.png') }}" alt="Logo" class="w-10 h-10 rounded-full shadow" />
+        </a>
+  
+        @auth
+        <div class="flex items-center gap-3">
+          <button class="bg-[#75AC78] hover:bg-[#6C9E6E] text-white px-5 py-2 rounded-lg font-semibold shadow-md transition-all transform hover:scale-105">
+            <span>{{ Auth::user()->name }}</span>
+          </button>
+        </div>
+        @else
+        <a href="{{ route('login') }}" class="bg-[#75AC78] hover:bg-[#6C9E6E] text-white px-5 py-2 rounded-lg font-semibold shadow-md transition-all transform hover:scale-105">
+          ورود / ثبت‌نام
+        </a>
+        @endauth
+      </div>
+    </div>
+  </header>
+{{-- <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -38,7 +58,7 @@ new class extends Component
                         Manage Source
                     </x-nav-link>
 
-                    <x-nav-link :href="route('conversation.index')" :active="request()->routeIs('conversation.index')" wire:navigate>
+                    <x-nav-link :href="route('kolak.conversations')" :active="request()->routeIs('kolak.conversations')" wire:navigate>
                         Conversation
                     </x-nav-link>
 
@@ -101,7 +121,7 @@ new class extends Component
                 Manage Source
             </x-responsive-nav-link>
 
-            <x-responsive-nav-link :href="route('conversation.index')" :active="request()->routeIs('conversation.index')" wire:navigate>
+            <x-responsive-nav-link :href="route('kolak.conversations')" :active="request()->routeIs('kolak.conversations')" wire:navigate>
                 Conversation
             </x-responsive-nav-link>
 
@@ -131,4 +151,4 @@ new class extends Component
             </div>
         </div>
     </div>
-</nav>
+</nav> --}}

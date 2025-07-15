@@ -1,0 +1,26 @@
+/* Add to your CSS */
+.message-bubble {
+    transition: all 0.2s ease;
+}
+
+.message-bubble:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ai-message {
+    border-bottom-left-radius: 0;
+}
+
+.user-message {
+    border-bottom-right-radius: 0;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-bounce {
+    animation: bounce 1s infinite;
+}

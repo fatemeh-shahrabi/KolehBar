@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
@@ -9,54 +7,55 @@ new #[Layout('layouts.guest')] class extends Component
 {
     public string $password = '';
 
-    /**
-     * Confirm the current user's password.
-     */
     public function confirmPassword(): void
     {
-        $this->validate([
-            'password' => ['required', 'string'],
-        ]);
+        $this->validate(['password' => ['required', 'string']]);
 
-        if (! Auth::guard('web')->validate([
-            'email' => Auth::user()->email,
+        if (! auth()->guard('web')->validate([
+            'email' => auth()->user()->email,
             'password' => $this->password,
         ])) {
-            throw ValidationException::withMessages([
-                'password' => __('auth.password'),
-            ]);
+            $this->addError('password', 'رمز عبور وارد شده نادرست است.');
+            return;
         }
 
-        session(['auth.password_confirmed_at' => time()]);
-
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        session()->put('auth.password_confirmed_at', time());
+        $this->redirectIntended(default: route('dashboard'), navigate: true);
     }
 }; ?>
 
-<div>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
+<div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 mx-4 font-dana">
+    <!-- لوگو -->
+    <div class="flex justify-center mb-6">
+        <a href="{{ route('welcome') }}">
+            <img src="{{ asset('images/kolehbar-logo.png') }}" alt="کوله‌بار" class="h-16" />
+        </a>
     </div>
 
-    <form wire:submit="confirmPassword">
-        <!-- Password -->
+    <h1 class="text-center text-xl font-bold text-gray-800 mb-2">تأیید رمز عبور</h1>
+    <p class="text-center text-sm text-gray-600 mb-6">لطفاً برای امنیت بیشتر، رمز عبور خود را وارد کنید</p>
+
+    <form wire:submit="confirmPassword" class="space-y-4">
+        <!-- رمز عبور -->
         <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input wire:model="password"
-                          id="password"
-                          class="block mt-1 w-full"
-                          type="password"
-                          name="password"
-                          required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-1">رمز عبور</label>
+            <input 
+                wire:model="password"
+                id="password"
+                type="password"
+                name="password"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A7D7A7] focus:border-[#A7D7A7] outline-none transition @error('password') border-red-500 @enderror"
+                required
+                autofocus
+            >
+            @error('password')
+                <span class="text-red-500 text-xs mt-1">{{ $message }}</span>
+            @enderror
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
+        <!-- دکمه ارسال -->
+        <button type="submit" class="w-full bg-[#6FA972] hover:bg-[#5e955f] text-white py-3 px-4 rounded-lg font-semibold shadow-md transition-all transform hover:scale-[1.02]">
+            تأیید رمز عبور
+        </button>
     </form>
 </div>

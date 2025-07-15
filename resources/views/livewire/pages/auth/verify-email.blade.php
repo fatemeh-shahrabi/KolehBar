@@ -1,58 +1,66 @@
 <?php
 
-use App\Livewire\Actions\Logout;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\Layout;
 use Livewire\Volt\Component;
 
 new #[Layout('layouts.guest')] class extends Component
 {
-    /**
-     * Send an email verification notification to the user.
-     */
     public function sendVerification(): void
     {
-        if (Auth::user()->hasVerifiedEmail()) {
-            $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
-
+        if (auth()->user()->hasVerifiedEmail()) {
+            $this->redirectIntended(default: route('dashboard'), navigate: true);
             return;
         }
 
-        Auth::user()->sendEmailVerificationNotification();
+        auth()->user()->sendEmailVerificationNotification();
 
-        Session::flash('status', 'verification-link-sent');
+        session()->flash('status', 'verification-link-sent');
     }
 
-    /**
-     * Log the current user out of the application.
-     */
-    public function logout(Logout $logout): void
+    public function logout(): void
     {
-        $logout();
-
+        auth()->guard('web')->logout();
+        session()->invalidate();
+        session()->regenerateToken();
         $this->redirect('/', navigate: true);
     }
 }; ?>
 
-<div>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
+<div class="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 mx-4 font-dana">
+    <!-- لوگو -->
+    <div class="flex justify-center mb-6">
+        <a href="{{ route('welcome') }}">
+            <img src="{{ asset('images/kolehbar-logo.png') }}" alt="کوله‌بار" class="h-16" />
+        </a>
     </div>
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
+    <h1 class="text-center text-xl font-bold text-gray-800 mb-2">تایید ایمیل</h1>
+    
+    <div class="space-y-4 text-center">
+        @if (session('status') == 'verification-link-sent')
+            <div class="mb-4 text-sm text-green-600">
+                لینک تایید جدید به ایمیل شما ارسال شد.
+            </div>
+        @endif
+
+        <p class="text-sm text-gray-600">
+            قبل از ادامه، لطفاً ایمیل خود را با کلیک روی لینک تایید بررسی کنید.
+        </p>
+
+        <p class="text-sm text-gray-600">
+            اگر ایمیل را دریافت نکرده‌اید، می‌توانید درخواست ارسال مجدد کنید.
+        </p>
+
+        <div class="flex flex-col gap-4 mt-6">
+            <button wire:click="sendVerification" 
+                    class="bg-[#6FA972] hover:bg-[#5e955f] text-white py-2 px-4 rounded-lg font-semibold shadow-md transition-all">
+                ارسال مجدد لینک تایید
+            </button>
+
+            <button wire:click="logout" 
+                    class="text-sm text-gray-600 hover:text-gray-900">
+                خروج از حساب کاربری
+            </button>
         </div>
-    @endif
-
-    <div class="mt-4 flex items-center justify-between">
-        <x-primary-button wire:click="sendVerification">
-            {{ __('Resend Verification Email') }}
-        </x-primary-button>
-
-        <button wire:click="logout" type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            {{ __('Log Out') }}
-        </button>
     </div>
 </div>

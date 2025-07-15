@@ -64,40 +64,38 @@ new class extends Component
 
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+        <h2 class="text-lg font-semibold text-gray-800 font-dana">
+            {{ __('اطلاعات پروفایل') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+        <p class="mt-2 text-sm text-gray-600">
+            {{ __("اطلاعات پروفایل و آدرس ایمیل خود را به‌روزرسانی کنید.") }}
         </p>
     </header>
 
     <form wire:submit="updateProfileInformation" class="mt-6 space-y-6">
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <label for="name" class="block text-sm font-medium text-gray-700 font-dana">{{ __('نام') }}</label>
+            <input wire:model="name" id="name" name="name" type="text" class="mt-1 block w-full border border-gray-300 rounded-lg py-3 px-4 focus:ring-2 focus:ring-[#A7D7A7] focus:border-[#A7D7A7] transition font-dana" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2 text-red-500 text-xs" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input wire:model="email" id="email" name="email" type="email" class="mt-1 block w-full" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <label for="email" class="block text-sm font-medium text-gray-700 font-dana">{{ __('ایمیل') }}</label>
+            <input wire:model="email" id="email" name="email" type="email" class="mt-1 block w-full border border-gray-300 rounded-lg py-3 px-4 focus:ring-2 focus:ring-[#A7D7A7] focus:border-[#A7D7A7] transition font-dana" required autocomplete="username" />
+            <x-input-error class="mt-2 text-red-500 text-xs" :messages="$errors->get('email')" />
 
             @if (auth()->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! auth()->user()->hasVerifiedEmail())
                 <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Your email address is unverified.') }}
-
-                        <button wire:click.prevent="sendVerification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Click here to re-send the verification email.') }}
+                    <p class="text-sm mt-3 text-gray-600 font-dana">
+                        {{ __('آدرس ایمیل شما تأیید نشده است.') }}
+                        <button wire:click.prevent="sendVerification" class="text-[#EC9F48] hover:text-[#F68B2D] text-sm font-semibold transition">
+                            {{ __('برای ارسال مجدد ایمیل تأیید کلیک کنید.') }}
                         </button>
                     </p>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('A new verification link has been sent to your email address.') }}
+                        <p class="mt-2 font-semibold text-sm text-[#A7D7A7] font-dana">
+                            {{ __('لینک تأیید جدید به آدرس ایمیل شما ارسال شد.') }}
                         </p>
                     @endif
                 </div>
@@ -105,10 +103,12 @@ new class extends Component
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <button type="submit" class="bg-[#75AC78] hover:bg-[#6C9E6E] text-white px-5 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 font-dana">
+                {{ __('ذخیره') }}
+            </button>
 
-            <x-action-message class="me-3" on="profile-updated">
-                {{ __('Saved.') }}
+            <x-action-message class="me-3 text-[#A7D7A7] font-semibold" on="profile-updated">
+                {{ __('ذخیره شد.') }}
             </x-action-message>
         </div>
     </form>

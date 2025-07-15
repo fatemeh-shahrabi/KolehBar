@@ -25,54 +25,51 @@ new class extends Component
 
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Delete Account') }}
+        <h2 class="text-lg font-semibold text-gray-800 font-dana">
+            {{ __('حذف حساب') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+        <p class="mt-2 text-sm text-gray-600">
+            {{ __('پس از حذف حساب، تمام منابع و داده‌های آن به‌طور دائم حذف خواهند شد. قبل از حذف حساب، لطفاً هر داده یا اطلاعاتی که مایل به حفظ آن هستید دانلود کنید.') }}
         </p>
     </header>
 
-    <x-danger-button
+    <button
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
-    >{{ __('Delete Account') }}</x-danger-button>
+        class="bg-[#EF4444] hover:bg-[#DC2626] text-white px-5 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 font-dana"
+    >
+        {{ __('حذف حساب') }}
+    </button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable>
         <form wire:submit="deleteUser" class="p-6">
-
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
+            <h2 class="text-lg font-semibold text-gray-800 font-dana">
+                {{ __('آیا مطمئن هستید که می‌خواهید حساب خود را حذف کنید؟') }}
             </h2>
-
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+            <p class="mt-2 text-sm text-gray-600">
+                {{ __('پس از حذف حساب، تمام منابع و داده‌های آن به‌طور دائم حذف خواهند شد. لطفاً رمز عبور خود را وارد کنید تا تأیید کنید که می‌خواهید حساب خود را به‌طور دائم حذف کنید.') }}
             </p>
 
             <div class="mt-6">
-                <x-input-label for="password" value="{{ __('Password') }}" class="sr-only" />
-
-                <x-text-input
+                <label for="password" class="sr-only font-dana">{{ __('رمز عبور') }}</label>
+                <input
                     wire:model="password"
                     id="password"
                     name="password"
                     type="password"
-                    class="mt-1 block w-3/4"
-                    placeholder="{{ __('Password') }}"
+                    class="mt-1 block w-full border border-gray-300 rounded-lg py-3 px-4 focus:ring-2 focus:ring-[#A7D7A7] focus:border-[#A7D7A7] transition font-dana"
+                    placeholder="{{ __('رمز عبور') }}"
                 />
-
-                <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                <x-input-error class="mt-2 text-red-500 text-xs" :messages="$errors->get('password')" />
             </div>
 
-            <div class="mt-6 flex justify-end">
-                <x-secondary-button x-on:click="$dispatch('close')">
-                    {{ __('Cancel') }}
-                </x-secondary-button>
-
-                <x-danger-button class="ms-3">
-                    {{ __('Delete Account') }}
-                </x-danger-button>
+            <div class="mt-6 flex justify-end gap-3">
+                <button x-on:click="$dispatch('close')" class="bg-white border border-gray-300 text-gray-700 px-5 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all transform hover:scale-105 font-dana">
+                    {{ __('انصراف') }}
+                </button>
+                <button type="submit" class="bg-[#EF4444] hover:bg-[#DC2626] text-white px-5 py-3 rounded-lg font-semibold transition-all transform hover:scale-105 font-dana">
+                    {{ __('حذف حساب') }}
+                </button>
             </div>
         </form>
     </x-modal>
