@@ -30,7 +30,7 @@ Travel planning can often be confusing and scattered. Kolehbar solves this probl
 
 ## My Role
 
-Full-stack development using Laravel and mobile-first UI design.
+Full-stack development using Laravel.
 
 ---
 
