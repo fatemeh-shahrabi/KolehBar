@@ -92,10 +92,12 @@ php artisan serve
 
 # The app will be accessible at: http://127.0.0.1:8000
 ```
-## Environment Variables
+Environment Variables
 
 Make sure to add your API keys in the .env file:
 
+```env
 OPENAI_API_KEY="your_openai_api_key_here"
 PINECONE_API_KEY="your_pinecone_api_key_here"
 PINECONE_HOST="your_pinecone_host_here"
+```
